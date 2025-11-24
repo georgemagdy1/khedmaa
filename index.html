@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمه - منصة الخدمات المنزلية | khedma - Home Services Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f3f4f6;
+            direction: rtl;
+        }
+
+        body.english {
+            direction: ltr;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* Login Page */
+        .login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #3b82f6 0%, #9333ea 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .login-icon {
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .login-btn.customer {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .login-btn.customer:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .login-btn.technician {
+            background: #10b981;
+            color: white;
+        }
+
+        .login-btn.technician:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #6b7280;
+        }
+
+        .register-link a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Register Page */
+        .register-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #d1d5db;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Tajawal', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .english .form-input, .english .form-textarea, .english .form-select {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .form-note {
+            background: #dbeafe;
+            border: 2px solid #93c5fd;
+            border-radius: 12px;
+            padding: 15px;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #2563eb;
+        }
+
+        .back-btn {
+            color: #3b82f6;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .logout-btn {
+            color: #ef4444;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .logout-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Location Search */
+        .location-search {
+            background: #3b82f6;
+            color: white;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+        }
+
+        .location-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .english .search-input {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .search-btn {
+            padding: 15px 25px;
+            background: white;
+            color: #3b82f6;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #f3f4f6;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 0 20px 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 25px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .service-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Technicians List */
+        .technicians-section {
+            padding: 0 20px 40px;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .tech-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .tech-content {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tech-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            flex-shrink: 0;
+        }
+
+        .tech-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .tech-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tech-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .tech-service {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .tech-rating {
+            text-align: left;
+        }
+
+        .english .tech-rating {
+            text-align: right;
+        }
+
+        .rating-stars {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .english .rating-stars {
+            flex-direction: row-reverse;
+        }
+
+        .star {
+            color: #fbbf24;
+            font-size: 20px;
+        }
+
+        .rating-number {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .rating-count {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .tech-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tech-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .english .tech-detail {
+            flex-direction: row-reverse;
+        }
+
+        .tech-detail-icon {
+            font-size: 18px;
+        }
+
+        .tech-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-book {
+            flex: 1;
+            padding: 15px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+
+        .btn-book:hover {
+            background: #2563eb;
+        }
+
+        .btn-call {
+            padding: 15px 25px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .english .btn-call {
+            flex-direction: row-reverse;
+        }
+
+        .btn-call:hover {
+            background: #059669;
+        }
+
+        /* Booking Form */
+        .booking-page {
+            padding: 0 20px 40px;
+        }
+
+        .booking-tech-info {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking-tech-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .english .booking-tech-header {
+            flex-direction: row-reverse;
+        }
+
+        .booking-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+        }
+
+        .booking-tech-details {
+            flex: 1;
+        }
+
+        .booking-tech-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .booking-price {
+            text-align: left;
+        }
+
+        .english .booking-price {
+            text-align: right;
+        }
+
+        .price-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .price-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .booking-form {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Dashboard */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .stat-card.green {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .stat-card.purple {
+            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+        }
+
+        .stat-label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 700;
+        }
+
+        .bookings-list {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .booking-item {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+
+        .booking-item:hover {
+            border-color: #93c5fd;
+        }
+
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .english .booking-header {
+            flex-direction: row-reverse;
+        }
+
+        .booking-customer {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .booking-status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .booking-status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .booking-status.accepted {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .booking-status.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .booking-problem {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .problem-label {
+            font-weight: 700;
+            color: #4b5563;
+            margin-bottom: 8px;
+        }
+
+        .problem-text {
+            color: #6b7280;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .booking-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-accept {
+            flex: 1;
+            padding: 15px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .english .btn-accept {
+            flex-direction: row-reverse;
+        }
+
+        .btn-accept:hover {
+            background: #059669;
+        }
+
+        .btn-reject {
+            flex: 1;
+            padding: 15px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .english .btn-reject {
+            flex-direction: row-reverse;
+        }
+
+        .btn-reject:hover {
+            background: #dc2626;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            opacity: 0.5;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .tech-content {
+                flex-direction: column;
+            }
+
+            .tech-header {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .english .tech-header {
+                align-items: flex-start;
+            }
+
+            .tech-rating {
+                text-align: right;
+            }
+
+            .english .tech-rating {
+                text-align: left;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .language-switcher {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span id="langIcon">🌐</span>
+            <span id="langText">English</span>
+        </button>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="login-page">
+        <div class="login-box">
+            <div class="login-icon">🔧</div>
+            <h1 class="login-title" data-ar="خدمه" data-en="khedma">خدمه</h1>
+            <p class="login-subtitle" data-ar="منصة الخدمات المنزلية الشاملة" data-en="Comprehensive Home Services Platform">منصة الخدمات المنزلية الشاملة</p>
+            <button class="login-btn customer" onclick="showPage('loginFormPage')">
+                <span>👤</span>
+                <span data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</span>
+            </button>
+            <button class="login-btn technician" onclick="showPage('registerPage')">
+                <span>🔧</span>
+                <span data-ar="إنشاء حساب جديد" data-en="Create New Account">إنشاء حساب جديد</span>
+            </button>
+            <div style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 14px;">
+                <span data-ar="احصل على أفضل الفنيين بالقرب منك" data-en="Get the best technicians near you">احصل على أفضل الفنيين بالقرب منك</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Form Page -->
+    <div id="loginFormPage" class="login-page hidden">
+        <div class="register-form">
+            <button class="back-btn" onclick="showPage('loginPage')">
+                <span>←</span>
+                <span data-ar="العودة" data-en="Back">العودة</span>
+            </button>
+            <h1 class="login-title" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</h1>
+            <p class="login-subtitle" data-ar="أدخل بياناتك للدخول إلى حسابك" data-en="Enter your details to access your account">أدخل بياناتك للدخول إلى حسابك</p>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" class="form-input" placeholder="example@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                    <input type="password" id="loginPassword" class="form-input" data-ar-placeholder="أدخل كلمة المرور" data-en-placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="نوع الحساب" data-en="Account Type">نوع الحساب</label>
+                    <select id="loginRole" class="form-select" required>
+                        <option value="" data-ar="اختر نوع الحساب" data-en="Select account type">اختر نوع الحساب</option>
+                        <option value="customer" data-ar="عميل" data-en="Customer">عميل</option>
+                        <option value="technician" data-ar="فني" data-en="Technician">فني</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-submit" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
+            </form>
+            
+            <div class="register-link">
+                <span data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟</span>
+                <a href="#" onclick="showPage('registerPage')" data-ar="إنشاء حساب جديد" data-en="Create new account">إنشاء حساب جديد</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="login-page hidden">
+        <div class="register-form">
+            <button class="back-btn" onclick="showPage('loginPage')">
+                <span>←</span>
+                <span data-ar="العودة" data-en="Back">العودة</span>
+            </button>
+            <h1 class="login-title" data-ar="إنشاء حساب جديد" data-en="Create New Account">إنشاء حساب جديد</h1>
+            <p class="login-subtitle" data-ar="املأ البيانات التالية لإنشاء حساب جديد" data-en="Fill in the following details to create a new account">املأ البيانات التالية لإنشاء حساب جديد</p>
+            
+            <form onsubmit="handleRegister(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+                        <input type="text" id="firstName" class="form-input" data-ar-placeholder="أحمد" data-en-placeholder="Ahmed" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label>
+                        <input type="text" id="lastName" class="form-input" data-ar-placeholder="محمد" data-en-placeholder="Mohamed" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" class="form-input" placeholder="example@email.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="رقم الهاتف" data-en="Phone Number">رقم الهاتف</label>
+                    <input type="tel" id="phone" class="form-input" data-ar-placeholder="01XXXXXXXXX" data-en-placeholder="01XXXXXXXXX" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+                        <input type="password" id="registerPassword" class="form-input" data-ar-placeholder="كلمة المرور" data-en-placeholder="Password" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-ar="تأكيد كلمة المرور" data-en="Confirm Password">تأكيد كلمة المرور</label>
+                        <input type="password" id="confirmPassword" class="form-input" data-ar-placeholder="تأكيد كلمة المرور" data-en-placeholder="Confirm Password" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-ar="نوع الحساب" data-en="Account Type">نوع الحساب</label>
+                    <select id="registerRole" class="form-select" required>
+                        <option value="" data-ar="اختر نوع الحساب" data-en="Select account type">اختر نوع الحساب</option>
+                        <option value="customer" data-ar="عميل" data-en="Customer">عميل</option>
+                        <option value="technician" data-ar="فني" data-en="Technician">فني</option>
+                    </select>
+                </div>
+                
+                <div id="technicianFields" class="hidden">
+                    <div class="form-group">
+                        <label class="form-label" data-ar="المهنة" data-en="Profession">المهنة</label>
+                        <select id="technicianService" class="form-select">
+                            <option value="" data-ar="اختر المهنة" data-en="Select profession">اختر المهنة</option>
+                            <option value="نجار" data-ar="نجار" data-en="Carpenter">نجار</option>
+                            <option value="كهربائي" data-ar="كهربائي" data-en="Electrician">كهربائي</option>
+                            <option value="سباك" data-ar="سباك" data-en="Plumber">سباك</option>
+                            <option value="فني تكييف" data-ar="فني تكييف" data-en="AC Technician">فني تكييف</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-ar="سنوات الخبرة" data-en="Years of Experience">سنوات الخبرة</label>
+                        <input type="number" id="experience" class="form-input" data-ar-placeholder="عدد سنوات الخبرة" data-en-placeholder="Years of experience">
+                    </div>
+                </div>
+                
+                <div class="form-note">
+                    <strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong>
+                    <span data-ar="سيتم التحقق من بياناتك قبل تفعيل الحساب" data-en="Your data will be verified before activating your account">سيتم التحقق من بياناتك قبل تفعيل الحساب</span>
+                </div>
+                
+                <button type="submit" class="btn-submit" data-ar="إنشاء الحساب" data-en="Create Account">إنشاء الحساب</button>
+            </form>
+            
+            <div class="register-link">
+                <span data-ar="لديك حساب بالفعل؟" data-en="Already have an account?">لديك حساب بالفعل؟</span>
+                <a href="#" onclick="showPage('loginFormPage')" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Page -->
+    <div id="servicesPage" class="hidden">
+        <div class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="header-title">
+                        <span data-ar="مرحباً،" data-en="Welcome,">مرحباً،</span>
+                        <span id="userName"></span>
+                    </h1>
+                    <button class="logout-btn" onclick="logout()" data-ar="تسجيل الخروج" data-en="Logout">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="location-search">
+            <div class="container">
+                <div class="location-title">
+                    <span>📍</span>
+                    <span data-ar="موقعك الحالي" data-en="Your Location">موقعك الحالي</span>
+                </div>
+                <div class="search-box">
+                    <input type="text" class="search-input" value="القاهرة" data-ar-placeholder="أدخل موقعك..." data-en-placeholder="Enter your location...">
+                    <button class="search-btn">🔍</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-section">
+            <div class="container">
+                <h2 class="section-title" data-ar="اختر الخدمة المطلوبة" data-en="Choose Required Service">اختر الخدمة المطلوبة</h2>
+                <div class="services-grid">
+                    <div class="service-card" style="border-top-color: #8B4513" onclick="selectService('نجار', '#8B4513')">
+                        <div class="service-icon" style="background-color: rgba(139, 69, 19, 0.1)">
+                            🔨
+                        </div>
+                        <h3 class="service-name" data-ar="نجار" data-en="Carpenter">نجار</h3>
+                        <p class="service-desc" data-ar="أعمال النجارة والأثاث" data-en="Woodworking and furniture">أعمال النجارة والأثاث</p>
+                    </div>
+                    <div class="service-card" style="border-top-color: #FFC107" onclick="selectService('كهربائي', '#FFC107')">
+                        <div class="service-icon" style="background-color: rgba(255, 193, 7, 0.1)">
+                            ⚡
+                        </div>
+                        <h3 class="service-name" data-ar="كهربائي" data-en="Electrician">كهربائي</h3>
+                        <p class="service-desc" data-ar="إصلاح وصيانة الكهرباء" data-en="Electrical repair and maintenance">إصلاح وصيانة الكهرباء</p>
+                    </div>
+                    <div class="service-card" style="border-top-color: #2196F3" onclick="selectService('سباك', '#2196F3')">
+                        <div class="service-icon" style="background-color: rgba(33, 150, 243, 0.1)">
+                            🔧
+                        </div>
+                        <h3 class="service-name" data-ar="سباك" data-en="Plumber">سباك</h3>
+                        <p class="service-desc" data-ar="إصلاح السباكة والمياه" data-en="Plumbing and water repair">إصلاح السباكة والمياه</p>
+                    </div>
+                    <div class="service-card" style="border-top-color: #00BCD4" onclick="selectService('فني تكييف', '#00BCD4')">
+                        <div class="service-icon" style="background-color: rgba(0, 188, 212, 0.1)">
+                            ❄️
+                        </div>
+                        <h3 class="service-name" data-ar="فني تكييف" data-en="AC Technician">فني تكييف</h3>
+                        <p class="service-desc" data-ar="صيانة وإصلاح التكييفات" data-en="AC maintenance and repair">صيانة وإصلاح التكييفات</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technicians Page -->
+    <div id="techniciansPage" class="hidden">
+        <div class="header">
+            <div class="container">
+                <button class="back-btn" onclick="showPage('servicesPage')">
+                    <span>←</span>
+                    <span data-ar="العودة للخدمات" data-en="Back to Services">العودة للخدمات</span>
+                </button>
+                <h1 class="header-title">
+                    <span id="selectedServiceName"></span>
+                    <span data-ar="- القاهرة" data-en="- Cairo">- القاهرة</span>
+                </h1>
+                <p style="color: #6b7280; margin-top: 5px;">
+                    <span data-ar="وجدنا" data-en="We found">وجدنا</span>
+                    <span id="techCount"></span>
+                    <span data-ar="فني بالقرب منك" data-en="technicians near you">فني بالقرب منك</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="technicians-section">
+            <div class="container">
+                <div id="techniciansList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="bookingPage" class="hidden">
+        <div class="header">
+            <div class="container">
+                <button class="back-btn" onclick="showPage('techniciansPage')">
+                    <span>←</span>
+                    <span data-ar="العودة للفنيين" data-en="Back to Technicians">العودة للفنيين</span>
+                </button>
+                <h1 class="header-title" data-ar="إتمام الحجز" data-en="Complete Booking">إتمام الحجز</h1>
+            </div>
+        </div>
+
+        <div class="booking-page">
+            <div class="container">
+                <div class="booking-tech-info">
+                    <h2 class="section-title" data-ar="تفاصيل الفني" data-en="Technician Details">تفاصيل الفني</h2>
+                    <div class="booking-tech-header">
+                        <div class="booking-avatar" id="bookingAvatar">👨‍🔧</div>
+                        <div class="booking-tech-details">
+                            <h3 class="booking-tech-name" id="bookingTechName"></h3>
+                            <p class="tech-service" id="bookingTechService"></p>
+                            <div style="margin-top: 8px;">
+                                <span class="star">⭐</span>
+                                <span style="font-weight: 700;" id="bookingTechRating"></span>
+                                <span style="color: #6b7280; font-size: 14px;" id="bookingTechReviews"></span>
+                            </div>
+                        </div>
+                        <div class="booking-price">
+                            <p class="price-amount"><span id="bookingTechPrice"></span> <span data-ar="جنيه" data-en="EGP">جنيه</span></p>
+                            <p class="price-label" data-ar="سعر الكشف" data-en="Inspection Fee">سعر الكشف</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="booking-form" onsubmit="submitBooking(event)">
+                    <h2 class="section-title" data-ar="بيانات الحجز" data-en="Booking Details">بيانات الحجز</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label" data-ar="وصف المشكلة *" data-en="Problem Description *">وصف المشكلة *</label>
+                        <textarea id="problemDesc" class="form-textarea" data-ar-placeholder="اشرح المشكلة بالتفصيل..." data-en-placeholder="Explain the problem in detail..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">📅 <span data-ar="التاريخ المفضل *" data-en="Preferred Date *">التاريخ المفضل *</span></label>
+                            <input type="date" id="preferredDate" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">🕐 <span data-ar="الوقت المفضل *" data-en="Preferred Time *">الوقت المفضل *</span></label>
+                            <select id="preferredTime" class="form-select" required>
+                                <option value="" data-ar="اختر الوقت" data-en="Select time">اختر الوقت</option>
+                                <option value="morning" data-ar="صباحاً (8 ص - 12 م)" data-en="Morning (8 AM - 12 PM)">صباحاً (8 ص - 12 م)</option>
+                                <option value="afternoon" data-ar="ظهراً (12 م - 4 م)" data-en="Afternoon (12 PM - 4 PM)">ظهراً (12 م - 4 م)</option>
+                                <option value="evening" data-ar="مساءً (4 م - 8 م)" data-en="Evening (4 PM - 8 PM)">مساءً (4 م - 8 م)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-note">
+                        <strong data-ar="ملاحظة:" data-en="Note:">ملاحظة:</strong>
+                        <span data-ar="سيتم التواصل معك من قبل الفني لتأكيد الموعد وسعر الكشف" data-en="The technician will contact you to confirm the appointment and inspection fee">سيتم التواصل معك من قبل الفني لتأكيد الموعد وسعر الكشف</span>
+                    </div>
+
+                    <button type="submit" class="btn-submit" data-ar="إرسال طلب الحجز" data-en="Submit Booking Request">إرسال طلب الحجز</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="hidden">
+        <div class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div>
+                        <h1 class="header-title" data-ar="لوحة التحكم" data-en="Dashboard">لوحة التحكم</h1>
+                        <p style="color: #6b7280; margin-top: 5px;">
+                            <span data-ar="مرحباً،" data-en="Welcome,">مرحباً،</span>
+                            <span id="techName"></span>
+                        </p>
+                    </div>
+                    <button class="logout-btn" onclick="logout()" data-ar="تسجيل الخروج" data-en="Logout">تسجيل الخروج</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="padding: 30px 20px;">
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3 class="stat-label" data-ar="طلبات جديدة" data-en="New Requests">طلبات جديدة</h3>
+                    <p class="stat-value" id="pendingCount">0</p>
+                </div>
+                <div class="stat-card green">
+                    <h3 class="stat-label" data-ar="طلبات مقبولة" data-en="Accepted Requests">طلبات مقبولة</h3>
+                    <p class="stat-value" id="acceptedCount">0</p>
+                </div>
+                <div class="stat-card purple">
+                    <h3 class="stat-label" data-ar="إجمالي الطلبات" data-en="Total Requests">إجمالي الطلبات</h3>
+                    <p class="stat-value" id="totalCount">0</p>
+                </div>
+            </div>
+
+            <div class="bookings-list">
+                <h2 class="section-title" data-ar="طلبات الحجز" data-en="Booking Requests">طلبات الحجز</h2>
+                <div id="bookingsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
